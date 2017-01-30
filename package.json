@@ -11,5 +11,11 @@
     "url": "git@code.parsehub.com:p/jasmine_test_utils.git"
   },
   "author": "",
-  "license": "Proprietary"
+  "license": "Proprietary",
+  "dependencies": {
+    "jasmine": "^2.5.3",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1",
+    "underscore": "^1.8.3"
+  }
 }

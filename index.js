@@ -1,6 +1,6 @@
-import child_process = 'child_process';
+import child_process from 'child_process';
 import Jasmine from 'jasmine';
-import rp from from 'request-promise';
+import rp from 'request-promise';
 import rpErrors from 'request-promise/errors';
 import _ from 'underscore';
 
@@ -156,7 +156,7 @@ export var syncify = function(runAsync) {
   }
 };
 
-export default var enhancedJasmineStart = function(dir) {
+export var enhancedJasmineStart = function(dir) {
   var jasmine = new Jasmine();
   jasmine.loadConfig({
     'spec_dir': dir,
