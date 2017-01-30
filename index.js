@@ -10,7 +10,6 @@ rpErrors.StatusCodeError = function(statusCode, body, options, response) {
     this.name = 'StatusCodeError';
     this.statusCode = statusCode;
     this.message = statusCode + '\n' + body;
-    console.log(this.message);
     this.error = body; // legacy attribute
     this.options = options;
     this.response = response;
@@ -42,7 +41,12 @@ export var hashCode = function(str) {
 };
 
 export var safeRequest = async function() {
-  return await rp.apply(null, arguments);
+  try {
+    return await rp.apply(null, arguments);
+  } catch (e) {
+    console.error(e.message);
+    throw e;
+  }
 };
 
 export var sleep = function(time) {
