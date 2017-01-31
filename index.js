@@ -200,3 +200,23 @@ export var enhancedJasmineStart = function(dir) {
 
   jasmine.execute();
 };
+
+export var createPage = async function(instance) {
+  var page = await instance.createPage();
+  await page.on('onConsoleMessage', function(msg) {
+    console.log(msg);
+  });
+  await page.on('error', function(msg) {
+    console.log('GOT ERROR');
+  });
+  await page.on('onResourceError', function(resourceError) {
+    console.error('GOT RESOURCE ERROR');
+    console.error(resourceError.url + ': ' + resourceError.errorString);
+  });
+  await page.property('viewportSize', {
+    width: 1920,
+    height: 1080,
+  });
+  return page;
+};
+
