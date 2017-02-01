@@ -1,5 +1,6 @@
 import child_process from 'child_process';
 import Jasmine from 'jasmine';
+import restify from 'restify';
 import rp from 'request-promise';
 import rpErrors from 'request-promise/errors';
 import _ from 'underscore';
@@ -220,3 +221,30 @@ export var createPage = async function(instance) {
   return page;
 };
 
+export class HtmlServer {
+  constructor(options) {
+    var defaults = {
+      host: 'localhost',
+      port: '7654',
+      dir: __dirname,
+    };
+    this.options = {...defaults, ...options};
+    this.server = restify.createServer();
+    this.server.get(/\/html\/.*/, restify.serveStatic({
+      directory: this.options.dir,
+    }));
+  }
+  getUrl(path) {
+    var url = 'http://' + this.options.host + ':' + this.options.port;
+    if (!path) {
+      return url;
+    }
+    if (!path.startsWith('/')) {
+      path = '/' + path;
+    }
+    return url + path;
+  }
+  start() {
+    this.server.listen(this.options.port, this.options.host);
+  }
+}
