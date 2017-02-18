@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git@github.com:stoarca/jasmine_test_utils.git"
   },
-  "author": "",
+  "author": "Sergiu Toarca",
   "license": "MIT",
   "dependencies": {
     "jasmine": "^2.5.3",
