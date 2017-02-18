@@ -8,10 +8,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@code.parsehub.com:p/jasmine_test_utils.git"
+    "url": "git@github.com:stoarca/jasmine_test_utils.git"
   },
   "author": "",
-  "license": "Proprietary",
+  "license": "MIT",
   "dependencies": {
     "jasmine": "^2.5.3",
     "request": "^2.79.0",
