@@ -230,6 +230,10 @@ export class HtmlServer {
     };
     this.options = {...defaults, ...options};
     this.server = restify.createServer();
+    this.server.get('/', function(req, res, next) {
+      res.send('home');
+      next();
+    });
     this.server.get(/\/html\/.*/, restify.serveStatic({
       directory: this.options.dir,
     }));
