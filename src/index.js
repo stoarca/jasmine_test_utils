@@ -10,6 +10,9 @@ import _ from 'underscore';
 rpErrors.StatusCodeError = function(statusCode, body, options, response) {
     this.name = 'StatusCodeError';
     this.statusCode = statusCode;
+    if (typeof body === 'object') {
+      body = JSON.stringify(body, undefined, 2);
+    }
     this.message = statusCode + '\n' + body;
     this.error = body; // legacy attribute
     this.options = options;
