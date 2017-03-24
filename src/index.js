@@ -138,8 +138,8 @@ SocketFeed.prototype.not = function(predicate) {
   return this;
 };
 
-export var startServer = async function(npmScript, doLog) {
-  var srv = child_process.spawn('npm', ['run', '-s', npmScript], {detached: true});
+export var startServer = async function(cmd, args, doLog) {
+  var srv = child_process.spawn(cmd, args, {detached: true});
   if (doLog) {
     srv.stdout.on('data', function(data) {
       console.log(data.toString('utf8'));
