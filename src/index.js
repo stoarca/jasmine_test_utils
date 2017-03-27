@@ -138,24 +138,40 @@ SocketFeed.prototype.not = function(predicate) {
   return this;
 };
 
-export var startServer = async function(cmd, args, doLog) {
-  var srv = child_process.spawn(cmd, args, {detached: true});
-  if (doLog) {
-    srv.stdout.on('data', function(data) {
+export var startServer = async function(cmd, doLog) {
+  var srv = child_process.spawn('sh', ['-c', cmd], {
+    cwd: process.cwd(),
+    stdio: [0, 'pipe', 'pipe'],
+    detached: true
+  });
+
+  srv.stdout.on('data', function(data) {
+    if (doLog) {
       console.log(data.toString('utf8'));
-    });
-    srv.stderr.on('data', function(data) {
+    }
+  });
+  srv.stderr.on('data', function(data) {
+    if (doLog) {
       console.log(data.toString('utf8'));
-    });
-  }
-  await sleep(5000);
-  return async function() {
+    }
+  });
+
+  var halt = async function() {
     try {
-      process.kill(-srv.pid);
+      process.kill(-srv.pid, 'SIGKILL'); // kill process group so all children die
     } catch (e) {
       console.log(e);
     }
   };
+  process.on('exit', function() {
+    halt();
+  });
+  process.on('SIGINT', function() {
+    process.exit();
+  });
+
+  await sleep(5000);
+  return halt;
 };
 
 export var syncify = function(runAsync) {
