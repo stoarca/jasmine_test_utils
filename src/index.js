@@ -176,7 +176,7 @@ export var startServer = async function(cmd, doLog) {
 
 export var syncify = function(runAsync) {
   return function(done) {
-    runAsync().then(done, done.fail);
+    runAsync.call(this).then(done, done.fail);
   }
 };
 
