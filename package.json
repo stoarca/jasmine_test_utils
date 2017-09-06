@@ -1,6 +1,6 @@
 {
   "name": "jasmine_test_utils",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Test utils to make node-jasmine better",
   "main": "dist/index.js",
   "scripts": {

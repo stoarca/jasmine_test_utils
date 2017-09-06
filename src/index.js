@@ -13,7 +13,7 @@ rpErrors.StatusCodeError = function(statusCode, body, options, response) {
     if (typeof body === 'object') {
       body = JSON.stringify(body, undefined, 2);
     }
-    this.message = statusCode + '\n' + body;
+    this.message = statusCode + '\n' + body + '\n' + JSON.stringify(options, undefined, 2);
     this.error = body; // legacy attribute
     this.options = options;
     this.response = response;
