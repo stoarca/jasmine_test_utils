@@ -48,7 +48,10 @@ export var safeRequest = async function() {
   try {
     return await rp.apply(null, arguments);
   } catch (e) {
+    console.error('got error');
     console.error(e.message);
+    console.error('when trying to request');
+    console.error(arguments);
     throw e;
   }
 };
