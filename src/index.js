@@ -276,6 +276,6 @@ export class HtmlServer {
     enableDestroy(this.server);
   }
   destroy(cb) {
-    return this.server.destory(cb);
+    return this.server.destroy(cb);
   }
 }
