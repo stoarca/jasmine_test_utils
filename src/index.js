@@ -1,4 +1,5 @@
 import child_process from 'child_process';
+import enableDestroy from 'server-destroy';
 import Jasmine from 'jasmine';
 import restify from 'restify';
 import rp from 'request-promise';
@@ -272,5 +273,9 @@ export class HtmlServer {
   }
   start() {
     this.server.listen(this.options.port, this.options.host);
+    enableDestroy(this.server);
+  }
+  destroy(cb) {
+    return this.server.destory(cb);
   }
 }

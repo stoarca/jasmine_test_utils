@@ -1,6 +1,6 @@
 {
   "name": "jasmine_test_utils",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Test utils to make node-jasmine better",
   "main": "dist/index.js",
   "scripts": {
@@ -19,6 +19,7 @@
     "request": "^2.79.0",
     "request-promise": "^4.1.1",
     "restify": "^4.3.0",
+    "server-destroy": "1.0.1",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
